@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/lb_background"
+        android:contentDescription="@string/background_image" />
+
+    <Button
+        android:id="@+id/newGameBtn"
+        style="@android:style/Widget.Button"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:background="@drawable/menu_button"
+        android:fontFamily="@font/the_girl_next_door"
+        android:text="@string/new_game"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/continueBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <Button
+        android:id="@+id/continueBtn"
+        style="@android:style/Widget.Button"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/menu_button"
+        android:fontFamily="@font/the_girl_next_door"
+        android:text="@string/continue_game"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/highscoreBtn"
+        app:layout_constraintEnd_toEndOf="@+id/newGameBtn"
+        app:layout_constraintStart_toStartOf="@+id/newGameBtn"
+        app:layout_constraintTop_toBottomOf="@+id/newGameBtn" />
+
+    <Button
+        android:id="@+id/highscoreBtn"
+        style="@android:style/Widget.Button"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/menu_button"
+        android:fontFamily="@font/the_girl_next_door"
+        android:text="@string/hightscore"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/settingsBtn"
+        app:layout_constraintEnd_toEndOf="@+id/continueBtn"
+        app:layout_constraintStart_toStartOf="@+id/continueBtn"
+        app:layout_constraintTop_toBottomOf="@+id/continueBtn" />
+
+    <Button
+        android:id="@+id/settingsBtn"
+        style="@android:style/Widget.Button"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/menu_button"
+        android:fontFamily="@font/the_girl_next_door"
+        android:text="@string/settings"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/highscoreBtn"
+        app:layout_constraintStart_toStartOf="@+id/highscoreBtn"
+        app:layout_constraintTop_toBottomOf="@+id/highscoreBtn" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
