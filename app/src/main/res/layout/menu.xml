@@ -60,7 +60,7 @@
         android:layout_height="60dp"
         android:background="@drawable/menu_button"
         android:fontFamily="@font/the_girl_next_door"
-        android:text="@string/hightscore"
+        android:text="@string/highscore"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         android:textStyle="bold"
