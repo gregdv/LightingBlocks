@@ -1,8 +1,9 @@
-package com.gfdevs.lightingblocks
+package com.gfdevs.lightingblocks.Controller
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.gfdevs.lightingblocks.Utilities.BaseActivity
+import com.gfdevs.lightingblocks.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {

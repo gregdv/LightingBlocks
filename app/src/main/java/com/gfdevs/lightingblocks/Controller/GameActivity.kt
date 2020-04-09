@@ -1,4 +1,4 @@
-package com.gfdevs.lightingblocks
+package com.gfdevs.lightingblocks.Controller
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar

@@ -1,4 +1,4 @@
-package com.gfdevs.lightingblocks
+package com.gfdevs.lightingblocks.Utilities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
