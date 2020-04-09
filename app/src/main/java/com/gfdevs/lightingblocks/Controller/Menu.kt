@@ -1,7 +1,6 @@
 package com.gfdevs.lightingblocks.Controller
 
-
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -16,6 +15,21 @@ class Menu : BaseActivity(){
     }
 
     fun newGameBtnClicked(view: View){
-        Toast.makeText(this,"New Game button clicked!", Toast.LENGTH_LONG).show()
+
+        val gameIntent = Intent(this, GameActivity::class.java)
+        startActivity(gameIntent)
     }
+
+    fun continueBtnClicked(view: View){
+        Toast.makeText(this,"Continue button clicked!", Toast.LENGTH_SHORT).show()
+    }
+
+    fun highscoreBtnClicked(view: View){
+        Toast.makeText(this,"Highscore button clicked!", Toast.LENGTH_SHORT).show()
+    }
+
+    fun settingsBtnClicked(view: View){
+        Toast.makeText(this,"Setting button clicked!", Toast.LENGTH_SHORT).show()
+    }
+
 }
