@@ -2,6 +2,7 @@ package com.gfdevs.lightingblocks.Controller
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.gfdevs.lightingblocks.Utilities.BaseActivity
 import com.gfdevs.lightingblocks.R
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,9 +13,9 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mainLayout.setOnClickListener(){
+        mainLayout.setOnClickListener() {
             println("Screen has been tapped")
-            val menuIntent = Intent (this, Menu::class.java)
+            val menuIntent = Intent(this, Menu::class.java)
             startActivity(menuIntent)
         }
 

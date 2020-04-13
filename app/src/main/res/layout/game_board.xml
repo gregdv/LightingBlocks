@@ -1,311 +1,337 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.gridlayout.widget.GridLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.gridlayout.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/gameBoard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#070707"
+    android:background="#252525"
+    android:onClick="gameBoardClicked"
     app:columnCount="5"
     app:rowCount="5">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/square1"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="0"
+        app:layout_columnWeight="1"
         app:layout_row="0"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/square2"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="1"
+        app:layout_columnWeight="1"
         app:layout_row="0"
-        app:srcCompat="@drawable/r1"/>
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/square3"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="2"
+        app:layout_columnWeight="1"
         app:layout_row="0"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/square4"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="3"
+        app:layout_columnWeight="1"
         app:layout_row="0"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/square5"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="4"
+        app:layout_columnWeight="1"
         app:layout_row="0"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/square6"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="0"
+        app:layout_columnWeight="1"
         app:layout_row="1"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/square7"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="1"
+        app:layout_columnWeight="1"
         app:layout_row="1"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/square8"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="2"
+        app:layout_columnWeight="1"
         app:layout_row="1"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/square9"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="3"
+        app:layout_columnWeight="1"
         app:layout_row="1"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/square10"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="4"
+        app:layout_columnWeight="1"
         app:layout_row="1"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/square11"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="0"
+        app:layout_columnWeight="1"
         app:layout_row="2"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/square12"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="1"
+        app:layout_columnWeight="1"
         app:layout_row="2"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/square13"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="2"
+        app:layout_columnWeight="1"
         app:layout_row="2"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/square14"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="3"
+        app:layout_columnWeight="1"
         app:layout_row="2"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView14"
+        android:id="@+id/square15"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="4"
+        app:layout_columnWeight="1"
         app:layout_row="2"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView15"
+        android:id="@+id/square16"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="0"
+        app:layout_columnWeight="1"
         app:layout_row="3"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView16"
+        android:id="@+id/square17"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="1"
+        app:layout_columnWeight="1"
         app:layout_row="3"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView17"
+        android:id="@+id/square18"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="2"
+        app:layout_columnWeight="1"
         app:layout_row="3"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView18"
+        android:id="@+id/square19"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="3"
+        app:layout_columnWeight="1"
         app:layout_row="3"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView19"
+        android:id="@+id/square20"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="4"
+        app:layout_columnWeight="1"
         app:layout_row="3"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView20"
+        android:id="@+id/square21"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="0"
+        app:layout_columnWeight="1"
         app:layout_row="4"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView21"
+        android:id="@+id/square22"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="1"
+        app:layout_columnWeight="1"
         app:layout_row="4"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView22"
+        android:id="@+id/square23"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="2"
+        app:layout_columnWeight="1"
         app:layout_row="4"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView23"
+        android:id="@+id/square24"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="3"
+        app:layout_columnWeight="1"
         app:layout_row="4"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
     <ImageView
-        android:id="@+id/imageView24"
+        android:id="@+id/square25"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:contentDescription="@string/lightning_square"
         android:gravity="fill"
         android:padding="2dp"
-        app:layout_columnWeight="1"
-        app:layout_rowWeight="1"
         app:layout_column="4"
+        app:layout_columnWeight="1"
         app:layout_row="4"
-        app:srcCompat="@drawable/r1" />
+        app:layout_rowWeight="1"
+        app:srcCompat="@drawable/red_on" />
 
 </androidx.gridlayout.widget.GridLayout>

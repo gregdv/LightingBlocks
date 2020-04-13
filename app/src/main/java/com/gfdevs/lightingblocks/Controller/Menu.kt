@@ -15,7 +15,6 @@ class Menu : BaseActivity(){
     }
 
     fun newGameBtnClicked(view: View){
-
         val gameIntent = Intent(this, GameActivity::class.java)
         startActivity(gameIntent)
     }
