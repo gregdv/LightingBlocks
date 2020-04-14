@@ -6,12 +6,12 @@ import android.view.View
 import android.widget.Toast
 import com.gfdevs.lightingblocks.Utilities.BaseActivity
 import com.gfdevs.lightingblocks.R
+import com.gfdevs.lightingblocks.Services.DataService
 
 class Menu : BaseActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.menu)
-        println("Menu")
     }
 
     fun newGameBtnClicked(view: View){
@@ -28,7 +28,7 @@ class Menu : BaseActivity(){
     }
 
     fun settingsBtnClicked(view: View){
-        Toast.makeText(this,"Setting button clicked!", Toast.LENGTH_SHORT).show()
+       Toast.makeText(this,"Setting button clicked!", Toast.LENGTH_SHORT).show()
     }
 
 }

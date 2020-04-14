@@ -14,7 +14,6 @@ open class BaseActivity : AppCompatActivity() {
     override fun onStart() {
         Log.d(TAG, "${javaClass.simpleName} OnStart")
         super.onStart()
-
     }
 
     override fun onPause() {

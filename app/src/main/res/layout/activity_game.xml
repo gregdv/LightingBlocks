@@ -19,4 +19,72 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/levelTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/the_girl_next_door"
+        android:text="Level"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/movesTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/the_girl_next_door"
+        android:text="Moves"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/levelTxt" />
+
+    <TextView
+        android:id="@+id/moveCounterTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/the_girl_next_door"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/movesTxt"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/movesTxt"
+        app:layout_constraintTop_toBottomOf="@+id/movesTxt" />
+
+    <TextView
+        android:id="@+id/levelCounterTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/the_girl_next_door"
+        android:text="0"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/levelTxt"
+        app:layout_constraintStart_toStartOf="@+id/levelTxt"
+        app:layout_constraintTop_toBottomOf="@+id/levelTxt" />
+
+    <Chronometer
+        android:id="@+id/timeCounterTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="24sp"
+        android:typeface="serif"
+        app:layout_constraintEnd_toEndOf="@+id/timeTxt"
+        app:layout_constraintStart_toStartOf="@+id/timeTxt"
+        app:layout_constraintTop_toBottomOf="@+id/timeTxt" />
+
+    <TextView
+        android:id="@+id/timeTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:fontFamily="@font/the_girl_next_door"
+        android:text="Time"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/movesTxt"
+        app:layout_constraintStart_toEndOf="@+id/levelTxt"
+        app:layout_constraintTop_toTopOf="@+id/levelTxt" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
