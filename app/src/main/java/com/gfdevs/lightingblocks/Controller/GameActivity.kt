@@ -1,6 +1,9 @@
 package com.gfdevs.lightingblocks.Controller
 
 
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
@@ -13,21 +16,26 @@ import androidx.core.view.children
 import com.gfdevs.lightingblocks.R
 import com.gfdevs.lightingblocks.Services.DataService
 import com.gfdevs.lightingblocks.Utilities.BaseActivity
+import com.gfdevs.lightingblocks.Utilities.SHAREDPREFS_FILE
 import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.game_board.*
-import java.util.*
 
 
 class GameActivity : BaseActivity() {
 
     private var moveCounter = 0
-    var currentLevel = 1
+    private var currentLevel = 0
     lateinit var timer: Chronometer
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+
+        val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE,Context.MODE_PRIVATE)
+        var currentLevel = sharedPrefs.getInt("lastLevel",1)
+        println("Current level is $currentLevel")
+        val sharedPrefsEditor: SharedPreferences.Editor = sharedPrefs.edit()
 
         val timer = findViewById<View>(R.id.timeCounterTxt) as Chronometer
         timer.typeface = ResourcesCompat.getFont(this,R.font.the_girl_next_door)
@@ -48,8 +56,18 @@ class GameActivity : BaseActivity() {
 
                 val levelCompleted = checkIfLevelCompleted()
                 if (levelCompleted) {
-                    Toast.makeText(this, "Completed $levelCompleted", Toast.LENGTH_SHORT).show()
-                    ++currentLevel
+                    //check if next level exists
+                    println("Levels list size ${DataService.levelLayouts.size} > current $currentLevel")
+                    if (DataService.levelLayouts.size > currentLevel + 1){
+                        Toast.makeText(this, "Level $currentLevel completed", Toast.LENGTH_SHORT).show()
+                        ++currentLevel
+                        sharedPrefsEditor.putInt("lastLevel", currentLevel)
+                        sharedPrefsEditor.commit()
+                        println("Saved last level $currentLevel")
+                    }else {
+                        Toast.makeText(this, "You completed last level!!!", Toast.LENGTH_SHORT).show()
+                    }
+
                     levelCounterTxt.text = "" + currentLevel
                     restartLevel()
                 }
@@ -62,14 +80,26 @@ class GameActivity : BaseActivity() {
         restartLevel()
     }
 
+    fun quitBtnClicked(view: View) {
+        val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE,Context.MODE_PRIVATE)
+        val sharedPrefsEditor: SharedPreferences.Editor = sharedPrefs.edit()
+        sharedPrefsEditor.putInt("lastLevel", 1)
+        sharedPrefsEditor.commit()
+        restartLevel()
+        Toast.makeText(this,"Game has been restarted", Toast.LENGTH_SHORT).show()
+    }
 
-    fun restartLevel(){
+
+    private fun restartLevel(){
         val timer = findViewById<View>(R.id.timeCounterTxt) as Chronometer
 
         timer.base = SystemClock.elapsedRealtime()
 
         moveCounter = 0
         moveCounterTxt.text = "0"
+
+        val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE,Context.MODE_PRIVATE)
+        var currentLevel = sharedPrefs.getInt("lastLevel",1)
 
         readLevel(currentLevel)
     }
@@ -80,6 +110,9 @@ class GameActivity : BaseActivity() {
         println("Start loading level $levelNumber")
 
         val levelLayout = DataService.levelLayouts[levelNumber].levelLayout
+
+
+        println("Start loading level layout $levelLayout")
 
         for (square in gameBoard.children) {
             val idx = gameBoard.indexOfChild(square)
@@ -145,8 +178,6 @@ class GameActivity : BaseActivity() {
 
         return levelCompleted
     }
-
-
 
 
 }
