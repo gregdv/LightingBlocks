@@ -1,13 +1,13 @@
 package com.gfdevs.lightingblocks.Controller
 
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
 import android.view.View
 import android.widget.Chronometer
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
 import com.gfdevs.lightingblocks.R
@@ -15,12 +15,13 @@ import com.gfdevs.lightingblocks.Services.DataService
 import com.gfdevs.lightingblocks.Utilities.BaseActivity
 import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.game_board.*
+import java.util.*
 
 
 class GameActivity : BaseActivity() {
 
-    var moveCounter = 0
-    var currentLevel = 2
+    private var moveCounter = 0
+    var currentLevel = 1
     lateinit var timer: Chronometer
 
 
@@ -29,26 +30,50 @@ class GameActivity : BaseActivity() {
         setContentView(R.layout.activity_game)
 
         val timer = findViewById<View>(R.id.timeCounterTxt) as Chronometer
-        timer.setTypeface(ResourcesCompat.getFont(this,R.font.the_girl_next_door))
+        timer.typeface = ResourcesCompat.getFont(this,R.font.the_girl_next_door)
         timer.start()
 
-     //   timeCounterTxt.setText("" + timer)
-        levelCounterTxt.setText("" + currentLevel)
-        moveCounterTxt.setText("" + moveCounter)
-
+        levelCounterTxt.text = "" + currentLevel
+        moveCounterTxt.text = "" + moveCounter
 
         readLevel(currentLevel)
+
         //set listener on gameboard sqares
         for (square in gameBoard.children){
             square.setOnClickListener {
                 makeMove(square)
 
-                moveCounterTxt.setText("" + ++moveCounter)
+                moveCounterTxt.text = "" + ++moveCounter
                 println("Move $moveCounter")
+
+                val levelCompleted = checkIfLevelCompleted()
+                if (levelCompleted) {
+                    Toast.makeText(this, "Completed $levelCompleted", Toast.LENGTH_SHORT).show()
+                    ++currentLevel
+                    levelCounterTxt.text = "" + currentLevel
+                    restartLevel()
+                }
             }
         }
 
     }
+
+    fun restartLevelClicked(view: View) {
+        restartLevel()
+    }
+
+
+    fun restartLevel(){
+        val timer = findViewById<View>(R.id.timeCounterTxt) as Chronometer
+
+        timer.base = SystemClock.elapsedRealtime()
+
+        moveCounter = 0
+        moveCounterTxt.text = "0"
+
+        readLevel(currentLevel)
+    }
+
 
 
     private fun readLevel(levelNumber: Int) {
@@ -68,7 +93,6 @@ class GameActivity : BaseActivity() {
     }
 
     private fun setSquareStatus(square: View, statusOn: Boolean){
-        val idx = gameBoard.indexOfChild(square)
         val imageView = square.findViewById<ImageView>(square.id)
         val imgOff = R.drawable.red_off
         val imgOn = R.drawable.red_on
@@ -103,6 +127,28 @@ class GameActivity : BaseActivity() {
         }
 
     }
+
+
+    fun checkIfLevelCompleted(): Boolean {
+        var levelCompleted = true
+
+        for (square in gameBoard.children){
+
+            val squareTag = square.tag
+
+            if (squareTag == 1){
+                println("Square ${gameBoard.indexOfChild(square)}")
+                levelCompleted = false
+                break
+            }
+        }
+
+        return levelCompleted
+    }
+
+
+
+
 }
 
 

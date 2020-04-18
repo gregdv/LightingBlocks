@@ -8,8 +8,8 @@ object DataService {
 //levels
     val levelLayouts = listOf(
         Level(0, listOf(0,1,5)),
-        Level(1, listOf(11,13,15)),
-        Level(2, listOf(1,2,6))
+        Level(1, listOf(10,12,14)),
+        Level(2, listOf(11,16,21))
     )
 
     //move rules
