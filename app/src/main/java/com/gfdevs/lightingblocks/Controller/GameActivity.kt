@@ -65,7 +65,7 @@ class GameActivity : BaseActivity() {
                         sharedPrefsEditor.commit()
                         println("Saved last level $currentLevel")
                     }else {
-                        Toast.makeText(this, "You completed last level!!!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "You have completed the last level!!!", Toast.LENGTH_SHORT).show()
                     }
 
                     levelCounterTxt.text = "" + currentLevel

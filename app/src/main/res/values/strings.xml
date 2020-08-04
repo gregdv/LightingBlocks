@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LightingBlocks</string>
+    <string name="app_name">Lighting Squares</string>
     <string name="background_image">Background Image</string>
     <string name="new_game">New Game</string>
     <string name="continue_game">Continue</string>
@@ -22,4 +22,8 @@
     <string name="time">Time</string>
     <string name="quit">Quit</string>
     <string name="restart_level">Restart Level</string>
+    <string name="score_1_image">Score 1 Image</string>
+    <string name="score_2_image">Score 2 Image</string>
+    <string name="score_3_image">Score 3 Image</string>
+    <string name="_45">45</string>
 </resources>
