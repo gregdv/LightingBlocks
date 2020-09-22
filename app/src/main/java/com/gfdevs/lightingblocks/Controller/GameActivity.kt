@@ -1,13 +1,13 @@
 package com.gfdevs.lightingblocks.Controller
 
 
-import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Chronometer
 import android.widget.ImageView
 import android.widget.Toast
@@ -17,6 +17,7 @@ import com.gfdevs.lightingblocks.R
 import com.gfdevs.lightingblocks.Services.DataService
 import com.gfdevs.lightingblocks.Utilities.BaseActivity
 import com.gfdevs.lightingblocks.Utilities.SHAREDPREFS_FILE
+import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.game_board.*
 
@@ -30,15 +31,27 @@ class GameActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+        // Change to reset button
+        val resetGameButton = findViewById<Button>(R.id.quitLevelBtn)
+        resetGameButton.text = "Reset Game!"
 
+        resetGameButton.setOnClickListener(){
+            val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE,Context.MODE_PRIVATE)
+            val editor: SharedPreferences.Editor = sharedPrefs.edit()
+            editor.putInt("lastLevel", 1)
+            editor.commit()
+            restartLevel()
+        }
 
-        val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE,Context.MODE_PRIVATE)
-        var currentLevel = sharedPrefs.getInt("lastLevel",1)
+        // end reset button
+
+        val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE, Context.MODE_PRIVATE)
+        var currentLevel = sharedPrefs.getInt("lastLevel", 1)
         println("Current level is $currentLevel")
         val sharedPrefsEditor: SharedPreferences.Editor = sharedPrefs.edit()
 
         val timer = findViewById<View>(R.id.timeCounterTxt) as Chronometer
-        timer.typeface = ResourcesCompat.getFont(this,R.font.the_girl_next_door)
+        timer.typeface = ResourcesCompat.getFont(this, R.font.the_girl_next_door)
         timer.start()
 
         levelCounterTxt.text = "" + currentLevel
@@ -47,7 +60,7 @@ class GameActivity : BaseActivity() {
         readLevel(currentLevel)
 
         //set listener on gameboard sqares
-        for (square in gameBoard.children){
+        for (square in gameBoard.children) {
             square.setOnClickListener {
                 makeMove(square)
 
@@ -58,14 +71,19 @@ class GameActivity : BaseActivity() {
                 if (levelCompleted) {
                     //check if next level exists
                     println("Levels list size ${DataService.levelLayouts.size} > current $currentLevel")
-                    if (DataService.levelLayouts.size > currentLevel + 1){
-                        Toast.makeText(this, "Level $currentLevel completed", Toast.LENGTH_SHORT).show()
+                    if (DataService.levelLayouts.size > currentLevel + 1) {
+                        Toast.makeText(this, "Level $currentLevel completed", Toast.LENGTH_SHORT)
+                            .show()
                         ++currentLevel
                         sharedPrefsEditor.putInt("lastLevel", currentLevel)
                         sharedPrefsEditor.commit()
                         println("Saved last level $currentLevel")
-                    }else {
-                        Toast.makeText(this, "You have completed the last level!!!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "You have completed the last level!!!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
 
                     levelCounterTxt.text = "" + currentLevel
@@ -81,29 +99,29 @@ class GameActivity : BaseActivity() {
     }
 
     fun quitBtnClicked(view: View) {
-        val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE,Context.MODE_PRIVATE)
+        val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE, Context.MODE_PRIVATE)
         val sharedPrefsEditor: SharedPreferences.Editor = sharedPrefs.edit()
         sharedPrefsEditor.putInt("lastLevel", 1)
         sharedPrefsEditor.commit()
         restartLevel()
-        Toast.makeText(this,"Game has been restarted", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Game has been restarted", Toast.LENGTH_SHORT).show()
     }
 
 
-    private fun restartLevel(){
+    private fun restartLevel() {
         val timer = findViewById<View>(R.id.timeCounterTxt) as Chronometer
 
         timer.base = SystemClock.elapsedRealtime()
 
         moveCounter = 0
         moveCounterTxt.text = "0"
-
-        val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE,Context.MODE_PRIVATE)
-        var currentLevel = sharedPrefs.getInt("lastLevel",1)
+        
+        val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE, Context.MODE_PRIVATE)
+        var currentLevel = sharedPrefs.getInt("lastLevel", 1)
+        levelCounterTxt.text = "" + currentLevel
 
         readLevel(currentLevel)
     }
-
 
 
     private fun readLevel(levelNumber: Int) {
@@ -118,43 +136,43 @@ class GameActivity : BaseActivity() {
             val idx = gameBoard.indexOfChild(square)
 
             if (levelLayout.contains(idx)) {
-                setSquareStatus(square,true)
+                setSquareStatus(square, true)
             } else {
-                setSquareStatus(square,false)
+                setSquareStatus(square, false)
             }
         }
     }
 
-    private fun setSquareStatus(square: View, statusOn: Boolean){
+    private fun setSquareStatus(square: View, statusOn: Boolean) {
         val imageView = square.findViewById<ImageView>(square.id)
         val imgOff = R.drawable.red_off
         val imgOn = R.drawable.red_on
         println("statusOn is $statusOn")
-        if (statusOn){
+        if (statusOn) {
             println("Change square to on")
             imageView.setImageResource(imgOn)
             square.tag = 1
-        }else if (!statusOn){
+        } else if (!statusOn) {
             println("Change square to off")
             imageView.setImageResource(imgOff)
             square.tag = 0
-        }else{
-            Log.e("Error","Error while changing square status")
+        } else {
+            Log.e("Error", "Error while changing square status")
         }
     }
 
-    private fun makeMove(square: View){
+    private fun makeMove(square: View) {
         val idx = gameBoard.indexOfChild(square)
         val squareList = DataService.moveRules[idx].squaresToChanged
 
-        for (i in squareList){
+        for (i in squareList) {
             val squareView = gameBoard.getChildAt(i)
             val squareTag = gameBoard.getChildAt(i).tag
 
-            if (squareTag == 0){
-                setSquareStatus(squareView,true)
-            }else {
-                setSquareStatus(squareView,false)
+            if (squareTag == 0) {
+                setSquareStatus(squareView, true)
+            } else {
+                setSquareStatus(squareView, false)
             }
 
         }
@@ -165,11 +183,11 @@ class GameActivity : BaseActivity() {
     fun checkIfLevelCompleted(): Boolean {
         var levelCompleted = true
 
-        for (square in gameBoard.children){
+        for (square in gameBoard.children) {
 
             val squareTag = square.tag
 
-            if (squareTag == 1){
+            if (squareTag == 1) {
                 println("Square ${gameBoard.indexOfChild(square)}")
                 levelCompleted = false
                 break
@@ -179,6 +197,11 @@ class GameActivity : BaseActivity() {
         return levelCompleted
     }
 
+    fun checkLevelScore(levelNumber: Int, moveCouter: Int): Byte {
+
+        return 0
+
+    }
 
 }
 
