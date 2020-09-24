@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
+import com.gfdevs.lightingblocks.Model.MovementsScoring
 import com.gfdevs.lightingblocks.R
 import com.gfdevs.lightingblocks.Services.DataService
 import com.gfdevs.lightingblocks.Utilities.BaseActivity
@@ -31,6 +32,7 @@ class GameActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
         // Change to reset button
         val resetGameButton = findViewById<Button>(R.id.quitLevelBtn)
         resetGameButton.text = "Reset Game!"
@@ -42,7 +44,6 @@ class GameActivity : BaseActivity() {
             editor.commit()
             restartLevel()
         }
-
         // end reset button
 
         val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE, Context.MODE_PRIVATE)
@@ -71,8 +72,23 @@ class GameActivity : BaseActivity() {
                 if (levelCompleted) {
                     //check if next level exists
                     println("Levels list size ${DataService.levelLayouts.size} > current $currentLevel")
+
+                    //Check scoringlist
+                    val lvlScore = DataService.movementsScoring[currentLevel]
+                    println("Scoring for level $currentLevel, perfect: ${lvlScore.PerfectScore}, good: ${lvlScore.GoodScore}, sufficient: ${lvlScore.SufficientScore}  ")
+                    var lvlResult: String = ""
+                    if (moveCounter <= lvlScore.PerfectScore) {
+                        lvlResult = "Perfect"
+                    } else if (moveCounter <= lvlScore.GoodScore){
+                        lvlResult = "Good"
+                    } else if (moveCounter <= lvlScore.SufficientScore){
+                        lvlResult = "Sufficient"
+                    } else {
+                        lvlResult = "Too much moves"
+                    }
+                    println("$moveCounter moves made, level result $lvlResult")
                     if (DataService.levelLayouts.size > currentLevel + 1) {
-                        Toast.makeText(this, "Level $currentLevel completed", Toast.LENGTH_SHORT)
+                        Toast.makeText(this, "Level $currentLevel completed! Moves $moveCounter, result $lvlResult ", Toast.LENGTH_SHORT)
                             .show()
                         ++currentLevel
                         sharedPrefsEditor.putInt("lastLevel", currentLevel)
@@ -147,13 +163,10 @@ class GameActivity : BaseActivity() {
         val imageView = square.findViewById<ImageView>(square.id)
         val imgOff = R.drawable.red_off
         val imgOn = R.drawable.red_on
-        println("statusOn is $statusOn")
         if (statusOn) {
-            println("Change square to on")
             imageView.setImageResource(imgOn)
             square.tag = 1
         } else if (!statusOn) {
-            println("Change square to off")
             imageView.setImageResource(imgOff)
             square.tag = 0
         } else {
@@ -180,8 +193,8 @@ class GameActivity : BaseActivity() {
     }
 
 
-    fun checkIfLevelCompleted(): Boolean {
-        var levelCompleted = true
+    private fun checkIfLevelCompleted(): Boolean {
+        var levelCompleted: Boolean = true
 
         for (square in gameBoard.children) {
 
@@ -202,8 +215,9 @@ class GameActivity : BaseActivity() {
         return 0
 
     }
-
 }
+
+
 
 
 
