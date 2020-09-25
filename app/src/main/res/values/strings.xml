@@ -26,4 +26,5 @@
     <string name="score_2_image">Score 2 Image</string>
     <string name="score_3_image">Score 3 Image</string>
     <string name="_45">45</string>
+    <string name="info_text">This is test version of the game!</string>
 </resources>

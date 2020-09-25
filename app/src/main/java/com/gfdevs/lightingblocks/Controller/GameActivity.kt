@@ -79,27 +79,34 @@ class GameActivity : BaseActivity() {
                     var lvlResult: String = ""
                     if (moveCounter <= lvlScore.PerfectScore) {
                         lvlResult = "Perfect"
+                        ++currentLevel
+                        sharedPrefsEditor.putInt("lastLevel", currentLevel)
+                        sharedPrefsEditor.commit()
                     } else if (moveCounter <= lvlScore.GoodScore){
                         lvlResult = "Good"
+                        ++currentLevel
+                        sharedPrefsEditor.putInt("lastLevel", currentLevel)
+                        sharedPrefsEditor.commit()
                     } else if (moveCounter <= lvlScore.SufficientScore){
                         lvlResult = "Sufficient"
+                        ++currentLevel
+                        sharedPrefsEditor.putInt("lastLevel", currentLevel)
+                        sharedPrefsEditor.commit()
                     } else {
                         lvlResult = "Too much moves"
                     }
                     println("$moveCounter moves made, level result $lvlResult")
-                    if (DataService.levelLayouts.size > currentLevel + 1) {
+
+
+                    if (DataService.levelLayouts.size > currentLevel) {
                         Toast.makeText(this, "Level $currentLevel completed! Moves $moveCounter, result $lvlResult ", Toast.LENGTH_SHORT)
                             .show()
-                        ++currentLevel
-                        sharedPrefsEditor.putInt("lastLevel", currentLevel)
-                        sharedPrefsEditor.commit()
+
                         println("Saved last level $currentLevel")
                     } else {
                         Toast.makeText(
-                            this,
-                            "You have completed the last level!!!",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                            this,"You have completed the last level!!!", Toast.LENGTH_SHORT)
+                        .show()
                     }
 
                     levelCounterTxt.text = "" + currentLevel

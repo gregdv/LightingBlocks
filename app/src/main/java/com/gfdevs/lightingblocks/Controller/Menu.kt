@@ -9,12 +9,20 @@ import android.widget.Toast
 import com.gfdevs.lightingblocks.R
 import com.gfdevs.lightingblocks.Utilities.BaseActivity
 import com.gfdevs.lightingblocks.Utilities.SHAREDPREFS_FILE
+import kotlinx.android.synthetic.main.menu.*
 
 
 class Menu : BaseActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.menu)
+        newGameBtn.text = "Play"
+        continueBtn.isEnabled = false
+        continueBtn.setTextColor(resources.getColor(R.color.material_on_surface_disabled))
+        highscoreBtn.isEnabled = false
+        highscoreBtn.setTextColor(resources.getColor(R.color.material_on_surface_disabled))
+        settingsBtn.isEnabled = false
+        settingsBtn.setTextColor(resources.getColor(R.color.material_on_surface_disabled))
     }
 
     fun newGameBtnClicked(view: View){
