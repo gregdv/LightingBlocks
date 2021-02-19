@@ -3,6 +3,7 @@ package com.gfdevs.lightingblocks.Controller
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
@@ -13,12 +14,10 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
-import com.gfdevs.lightingblocks.Model.MovementsScoring
 import com.gfdevs.lightingblocks.R
 import com.gfdevs.lightingblocks.Services.DataService
 import com.gfdevs.lightingblocks.Utilities.BaseActivity
 import com.gfdevs.lightingblocks.Utilities.SHAREDPREFS_FILE
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.game_board.*
 
@@ -33,17 +32,22 @@ class GameActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
+        val mp = MediaPlayer.create(applicationContext,R.raw.move_sound)
+
+
+
         // Change to reset button
         val resetGameButton = findViewById<Button>(R.id.quitLevelBtn)
         resetGameButton.text = "Reset Game!"
 
-        resetGameButton.setOnClickListener(){
-            val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE,Context.MODE_PRIVATE)
+
+       /* resetGameButton.setOnClickListener(){
+            val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE, Context.MODE_PRIVATE)
             val editor: SharedPreferences.Editor = sharedPrefs.edit()
             editor.putInt("lastLevel", 1)
             editor.commit()
             restartLevel()
-        }
+        }*/
         // end reset button
 
         val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE, Context.MODE_PRIVATE)
@@ -64,9 +68,10 @@ class GameActivity : BaseActivity() {
         for (square in gameBoard.children) {
             square.setOnClickListener {
                 makeMove(square)
-
+                mp.start()
+                currentLevel = sharedPrefs.getInt("lastLevel", 1)
                 moveCounterTxt.text = "" + ++moveCounter
-                println("Move $moveCounter")
+                println("Move $moveCounter at level $currentLevel")
 
                 val levelCompleted = checkIfLevelCompleted()
                 if (levelCompleted) {
@@ -95,7 +100,7 @@ class GameActivity : BaseActivity() {
                     } else {
                         lvlResult = "Too much moves"
                     }
-                    println("$moveCounter moves made, level result $lvlResult")
+                    println("$moveCounter moves made, level result $lvlResult, next lvl $currentLevel")
 
 
                     if (DataService.levelLayouts.size > currentLevel) {
@@ -125,9 +130,10 @@ class GameActivity : BaseActivity() {
         val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE, Context.MODE_PRIVATE)
         val sharedPrefsEditor: SharedPreferences.Editor = sharedPrefs.edit()
         sharedPrefsEditor.putInt("lastLevel", 1)
-        sharedPrefsEditor.commit()
+        sharedPrefsEditor.apply()
         restartLevel()
-        Toast.makeText(this, "Game has been restarted", Toast.LENGTH_SHORT).show()
+        val lvltxt = sharedPrefs.getInt("lastLevel",0)
+        Toast.makeText(this, "Game has been restarted, current lvl $lvltxt", Toast.LENGTH_SHORT).show()
     }
 
 
@@ -141,8 +147,9 @@ class GameActivity : BaseActivity() {
         
         val sharedPrefs = this.getSharedPreferences(SHAREDPREFS_FILE, Context.MODE_PRIVATE)
         var currentLevel = sharedPrefs.getInt("lastLevel", 1)
-        levelCounterTxt.text = "" + currentLevel
 
+        levelCounterTxt.text = "" + currentLevel
+        Toast.makeText(this, "Current lvl $currentLevel", Toast.LENGTH_SHORT).show()
         readLevel(currentLevel)
     }
 
@@ -184,6 +191,8 @@ class GameActivity : BaseActivity() {
     private fun makeMove(square: View) {
         val idx = gameBoard.indexOfChild(square)
         val squareList = DataService.moveRules[idx].squaresToChanged
+
+
 
         for (i in squareList) {
             val squareView = gameBoard.getChildAt(i)

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lighting Squares</string>
+    <string name="app_name">Lighting Blocks</string>
     <string name="background_image">Background Image</string>
     <string name="new_game">New Game</string>
     <string name="continue_game">Continue</string>
