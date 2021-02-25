@@ -100,17 +100,18 @@ class GameActivity : BaseActivity() {
                     } else {
                         lvlResult = "Too much moves"
                     }
+
                     println("$moveCounter moves made, level result $lvlResult, next lvl $currentLevel")
 
 
                     if (DataService.levelLayouts.size > currentLevel) {
-                        Toast.makeText(this, "Level $currentLevel completed! Moves $moveCounter, result $lvlResult ", Toast.LENGTH_SHORT)
+                        Toast.makeText(this, "Level ${currentLevel-1} completed! Moves $moveCounter, result $lvlResult ", Toast.LENGTH_LONG)
                             .show()
 
                         println("Saved last level $currentLevel")
                     } else {
                         Toast.makeText(
-                            this,"You have completed the last level!!!", Toast.LENGTH_SHORT)
+                            this,"You have completed the last level!!!", Toast.LENGTH_LONG)
                         .show()
                     }
 
